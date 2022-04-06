@@ -7,7 +7,7 @@
 ## Установка
 
 ```
-pip install bettercord.py
+pip install bettercord
 ```
 
 ## **Важно!**
