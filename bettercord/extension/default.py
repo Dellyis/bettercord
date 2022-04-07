@@ -1,5 +1,6 @@
 from importlib import import_module
 
+from ..errors import PostStatsDenied
 from ..loop_manager import Global
 
 
@@ -16,7 +17,7 @@ class BetterCord(commands.Cog):  # type: ignore
     @tasks.loop(minutes=10)  # type: ignore
     async def post_stats(self):
         await self.bot.wait_until_ready()
-        response = await Global.http.post("/bots/stats", headers={
+        response = await self.bot.bettercord_client.http.post("/bots/stats", headers={
             "serverCount": str(len(self.bot.guilds)),
             "shardCount": str(self.bot.shard_count or 1)
         })
@@ -24,7 +25,7 @@ class BetterCord(commands.Cog):  # type: ignore
             res = await response.json()
             if response.status == 200:
                 return True
-            raise Exception(res["error"])
+            raise PostStatsDenied(res["error"])
 
 
 def setup(bot):

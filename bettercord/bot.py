@@ -1,5 +1,7 @@
 from typing import ClassVar, List, Optional, Tuple
 
+from .tags import BotTags
+
 
 class Bot:
     """
@@ -21,19 +23,19 @@ class Bot:
         The bot owner's id.
     coowners: :class:`list[int]`
         The bot coowners' ids.
-    github: :class:`str`
+    github: Optional[:class:`str`]
         The bot's github.
-    support: :class:`str`
+    support: Optional[:class:`str`]
         The bot's support server.
-    website: :class:`str`
+    website: Optional[:class:`str`]
         The bot's website.
-    tags: :class:`list[str]`
+    tags: :class:`~bettercord.BotTags`
         The bot's tags.
     short_descriprion: :class:`str`
         The bot's short description.
     long_descriprion: :class:`str`
         The bot's long description.
-    banner: class:`str`
+    banner: Optional[class:`str`]
         The bot's card banner.
     votes: :class:`int`
         The count of votes the bot has.
@@ -53,7 +55,6 @@ class Bot:
         attrs = " ".join(f"{key}={getattr(self, key)!r}" for key in self.__repr_info__)
         return f"<{self.__class__.__name__} {attrs}>"
 
-
     def __init__(self, raw_data: dict):
         self.name: str = raw_data["username"]
         self.id: int = int(raw_data["botID"])
@@ -66,7 +67,7 @@ class Bot:
         self.github: Optional[str] = raw_data.get("github")
         self.support: Optional[str] = raw_data.get("support")
         self.website: Optional[str] = raw_data.get("website")
-        self.tags: List[str] = raw_data.get("tags", [])
+        self.tags: BotTags = BotTags(raw_data.get("tags", []))
         self.short_descriprion: str = raw_data["shortDesc"]
         self.long_descriprion: str = raw_data["longDesc"]
         self.banner: Optional[str] = raw_data.get("background")

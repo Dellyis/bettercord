@@ -1,89 +1,107 @@
-# bettercord.py
+# bettercord
 
-**Python враппер для [BetterCord API](https://bettercord.xyz)**
+**Python wrapper for [BetterCord API](https://bettercord.xyz)**
 
 ---
 
-## Установка
+<p align="center">
+<strong>Few stats</strong>
+
+<img src="https://img.shields.io/pypi/dm/bettercord?style=for-the-badge" alt="">
+</p>
+
+---
+
+## Installation
 
 ```
 pip install bettercord
 ```
 
-## **Важно!**
+## **WARNING!**
 
-### Враппер асинхронен, поэтому любые вызовы методов следует выполнять только в асинхронных функциях!
+### Wrapper is asynchronous, so any method calls should be performed only is asynchronous functions!
 
 ---
 
-# Использование
+# Using
 
-## Начало
+## Starting
 
-- Импортируем библиотеку
+- Importing module
 
 > ```py
 > import bettercord
 > ```
 
-- Инициализируем клиент
+- Inilialing client
 
 > ```py
-> client = bettercord.Client("API токен")
+> client = bettercord.Client("API token")
 > ```
 
-Если ваш бот использует библиотеку не `discord.py`, то вам следует инициализировать клиент следующим образом:
+If your don't using `discord.py` or `pycord` initialize client like this:
 
 > ```py
-> client = bettercord.Client("API токен", fork_name="название библиотеки")
+> client = bettercord.Client("API token", fork_name="module name")
 > ```
 
-</details>
+## Bots
 
-## Боты
-
-### Получение информации о боте
+### Getting info about the bot by ID
 
 > ```py
 > bot_info = await client.get_bot_info(bot_id)
 > ```
 
-### Получение всех комментариев к боту
+### Getting comments on the bot
 
 > ```py
 > bot_comments = await client.get_bot_comments(bot_id)
 > ```
 
-### Отправка статистики
+### Sending stats
 
 > ```py
 > status = await client.post_stats(server_count, shard_count)
 > ```
 
-### Автоматическая отправка статистики
+### Automatic sending stats
 
 > ```py
 > client.run(bot)
 > ```
 
-## Пользователи
+## Users
 
-### Получение профиля пользователя
-
-> ```py
-> user_info = await client.get_user(user_id)
-> ```
-
-### Получение информации о голосе за бота
+### Getting user profile by ID
 
 > ```py
-> status = await client.check_vote(user_id)
+> user_info = await client.get_user_info(user_id)
 > ```
 
-## Сервера
+### Checking the user's vote for the bot
 
-### Получение информации о сервере
+> ```py
+> status = await client.check_bot_vote(user_id)
+> ```
+
+## Servers
+
+### Getting info about the server by ID
 
 > ```py
 > server_info = await client.get_server_info(server_id)
 > ```
+
+### Checking the user's vore for the server
+
+> ```py
+> status = await client.check_server_vote(server_id, user_id)
+> ```
+
+# Links
+
+- [Examples for this version](https://github.com/Dellyis/bettercord/tree/v1.1.0/examples)
+- [API docs](https://docs.bettercord.xyz)
+- [Monitoring](https://bettercord.xyz)

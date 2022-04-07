@@ -1,5 +1,7 @@
 from typing import ClassVar, List, Optional, Tuple
 
+from .tags import ServerTags
+
 
 class Server:
     """
@@ -7,11 +9,11 @@ class Server:
     ----------
     id: :class:`int`
         The server's ID.
-    icon: :class:`Optional[str]`
+    icon: Optional[:class:`str`]
         The server's icon.
     name: :class:`str`
         The server's name.
-    owner_id: :class:`Optional[str]`
+    owner_id: Optional[:class:`str`]
         The server's owner ID.
     short_descriprion: :class:`str`
         The server's short description.
@@ -21,7 +23,7 @@ class Server:
         The server's bumps count.
     votes: :class:`int`
         The count of votes the server has.
-    tags: :class:`list[str]`
+    tags: :class:`~bettercord.ServerTags`
         The server's tags.
     """
 
@@ -45,5 +47,5 @@ class Server:
         self.long_descriprion: str = raw_data["longDesc"]
         self.bumps: int = int(raw_data["bumps"])
         self.votes: int = int(raw_data["votes"])
-        self.tags: List[str] = raw_data.get("tags", [])
+        self.tags: ServerTags = ServerTags(raw_data.get("tags", []))
         self.raw_data: dict = raw_data

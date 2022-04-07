@@ -7,15 +7,15 @@ class User:
     ----------
     id: :class:`int`
         The user's id.
-    biogryphy: :class:`Optional[str]`
+    biogryphy: Optional[:class:`str`]
         The user's biography.
-    website: :class:`Optional[str]`
+    website: Optional[:class:`str`]
         The user's website.
-    github: :class:`Optional[str]`
+    github: Optional[:class:`str`]
         The user's github.
-    twitter: :class:`Optional[str]`
+    twitter: Optional[:class:`str`]
         The user's twitter.
-    instagram: :class:`Optional[str]`
+    instagram: Optional[:class:`str`]
         The user's instagram.
     """
 
